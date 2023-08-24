@@ -43,19 +43,6 @@ body {
   transform: scale(1.5);
 }
 
-.pair1-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  border: 2px solid lightgray;
-  padding-left: 25px;
-  padding-right: 25px;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  margin-bottom: 15px;
-  border-radius: 5px;
-}
 .pair2-input-container {
   display: flex;
   flex-direction: row;
