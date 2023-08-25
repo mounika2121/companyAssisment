@@ -6,6 +6,7 @@ import './App.css'
 
 const App = () => {
   const [selectedOption, setSelectedOption] = useState('2 Pair')
+  const [onClickSubmit, setOnClickSubmit] = useState(false)
 
   const handleOptionChange = option => {
     setSelectedOption(option)
@@ -24,8 +25,14 @@ const App = () => {
     return ''
   }
 
+  const submitForm = event => {
+    event.preventDefault()
+
+    setOnClickSubmit(preState => !preState)
+  }
+
   return (
-    <div className="app-container">
+    <form className="app-container" onSubmit={submitForm}>
       <div className="inner-container">
         <div className="heading-container">
           <hr className="hr-line" />
@@ -33,7 +40,11 @@ const App = () => {
           <hr className="hr-line" />
         </div>
         <div>
-          <div className="pair2-container">
+          <div
+            className={`pair2-container ${
+              selectedOption === '1 Pair' && 'selected-option'
+            }`}
+          >
             <div className="pair2-input-container">
               <div className="input-container">
                 <input
@@ -51,7 +62,11 @@ const App = () => {
             </div>
             {calculateTotal() === 'DKK 195.00' && <TableList />}
           </div>
-          <div className="pair2-container">
+          <div
+            className={`pair2-container ${
+              selectedOption === '2 Pair' && 'selected-option'
+            }`}
+          >
             <div className="pair2-input-container">
               <div className="input-container">
                 <input
@@ -67,14 +82,18 @@ const App = () => {
                 </div>
               </div>
               <p className="line-overline">DKK 195.00</p>
-              <div>
+              <div className="forty-percent">
                 <p className="popular-text">Most Popular</p>
-                <h5>40% OFF</h5>
+                <h5 className="align-forty">40% OFF</h5>
               </div>
             </div>
             {calculateTotal() === 'DKK 345.00' && <TableList />}
           </div>
-          <div className="pair2-container">
+          <div
+            className={`pair2-container ${
+              selectedOption === '3 Pair' && 'selected-option'
+            }`}
+          >
             <div className="pair2-input-container">
               <div className="input-container">
                 <input
@@ -100,7 +119,7 @@ const App = () => {
           </p>
         </div>
         <div>
-          <button type="button" className="add-cart-button">
+          <button type="submit" className="add-cart-button">
             + Add to Cart
           </button>
         </div>
@@ -109,7 +128,10 @@ const App = () => {
           <p className="copyright-name">Powered by Pumper</p>
         </div>
       </div>
-    </div>
+      {onClickSubmit && (
+        <p className="success-order-msg">Order Placed Successfully</p>
+      )}
+    </form>
   )
 }
 
